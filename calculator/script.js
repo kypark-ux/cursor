@@ -119,7 +119,7 @@ document.addEventListener('DOMContentLoaded', function() {
             <div><strong>포장 및 관리비:</strong> ${data.packagingPrice.toLocaleString()}원</div>
         `;
         
-        totalPrice.innerHTML = `<strong>약 ${lowerBound.toLocaleString()}원 ~ ${upperBound.toLocaleString()}원</strong>`;
+        totalPrice.innerHTML = `<strong> ${lowerBound.toLocaleString()}원 ~ ${upperBound.toLocaleString()}</strong>`;
         resultDiv.style.display = 'block';
         
         // 결과로 스크롤
