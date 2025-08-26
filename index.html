@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>견적 계산기</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <h1>견적 계산기</h1>
+        
+        <h3>소프트웨어 사업 노임 단가표</h3>
+        <table class="rate-table">
+            <thead>
+                <tr>
+                    <th>등급</th>
+                    <th>일일 인건비 (원)</th>
+                    <th>월 인건비 (원)</th>
+                    <th>재경비 (원)</th>
+                    <th>기술료 (원)</th>
+                    <th>1개월 투입 단가 (원)</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><strong>특급</strong></td>
+                    <td>406,342</td>
+                    <td id="monthly-special">-</td>
+                    <td id="overhead-special">-</td>
+                    <td id="tech-special">-</td>
+                    <td id="total-special">-</td>
+                </tr>
+                <tr>
+                    <td><strong>고급</strong></td>
+                    <td>305,433</td>
+                    <td id="monthly-senior">-</td>
+                    <td id="overhead-senior">-</td>
+                    <td id="tech-senior">-</td>
+                    <td id="total-senior">-</td>
+                </tr>
+                <tr>
+                    <td><strong>중급</strong></td>
+                    <td>239,748</td>
+                    <td id="monthly-middle">-</td>
+                    <td id="overhead-middle">-</td>
+                    <td id="tech-middle">-</td>
+                    <td id="total-middle">-</td>
+                </tr>
+                <tr>
+                    <td><strong>초급</strong></td>
+                    <td>215,681</td>
+                    <td id="monthly-junior">-</td>
+                    <td id="overhead-junior">-</td>
+                    <td id="tech-junior">-</td>
+                    <td id="total-junior">-</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <div class="calculation-info">
+            <strong>계산 공식:</strong><br>
+            • 월 인건비 = 일일 인건비 × 21일<br>
+            • 재경비 = 월 인건비 × 재경비 비율 (기본 110%)<br>
+            • 기술료 = (월 인건비 + 재경비) × 기술료 비율 (기본 20%)<br>
+            • 1개월 투입 단가 = 월 인건비 + 재경비 + 기술료
+        </div>
+
+        <table class="rate-table rate-settings">
+            <thead>
+                <tr>
+                    <th>재경비 비율 (%)</th>
+                    <th>기술료 비율 (%)</th>
+                    <th>할인율 (%)</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>
+                        <input type="number" id="overhead-rate" min="0" max="100" value="110" step="10" onchange="calculateRates()" class="rate-input">
+                    </td>
+                    <td>
+                        <input type="number" id="tech-rate" min="0" max="100" value="20" step="1" onchange="calculateRates()" class="rate-input">
+                    </td>
+                    <td>
+                        <select id="discount-rate" onchange="calculateTotal()" class="rate-input">
+                            <option value="0">0%</option>
+                            <option value="10">10%</option>
+                            <option value="20">20%</option>
+                            <option value="30" selected>30%</option>
+                            <option value="40">40%</option>
+                        </select>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+
+        <div class="table-labels">
+            <div>역할</div>
+            <div>등급</div>
+            <div>투입기간(월)</div>
+            <div>합계</div>
+            <div></div>
+        </div>
+
+        <div id="personnel-container">
+            <!-- 인원 정보가 여기에 추가됩니다 -->
+        </div>
+
+        <button class="add-btn" onclick="addPersonnel()">인원 추가</button>
+
+        <div class="total-section">
+            <h3>최종 견적 금액</h3>
+            <div class="summary-section">
+                <h4>선택 항목 요약</h4>
+                <div id="personnel-summary">인원을 추가해주세요.</div>
+            </div>
+            <div class="total-breakdown">
+                <div class="total-row">
+                    <span class="total-label">소계:</span>
+                    <span class="total-value" id="subtotal-amount">0원</span>
+                </div>
+                <div class="total-row">
+                    <span class="total-label">할인율 (<span id="discount-rate-display">30</span>%):</span>
+                    <span class="total-value discount" id="discount-amount">0원</span>
+                </div>
+                <div class="total-row final-total">
+                    <span class="total-label">최종 금액:</span>
+                    <span class="total-amount" id="final-amount">0원</span>
+                </div>
+            </div>
+            <button class="copy-btn" onclick="copyEstimate()">견적 정보 복사</button>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
+
+
+
+
