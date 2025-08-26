@@ -1,5 +1,5 @@
 // ======== 매핑 테이블 ========
-const COUNTRY_PREFIX = {"KR":"880","JP":"450"};
+const COUNTRY_PREFIX = {"KR":"880","JP":"450","GB":"500","US":"000"};
 const COLOR_CODE = {"WHITE":"01","BLACK":"02","NAVY":"03","GRAY":"04","RED":"05","BLUE":"06","GREEN":"07","YELLOW":"08","BEIGE":"09","BROWN":"10","IVORY":"11","CHARCOAL":"12","ORANGE":"13","PINK":"14","PURPLE":"15","KHAKI":"16"};
 const SIZE_CODE  = {"XS":"01","S":"02","M":"03","L":"04","XL":"05","XXL":"06","XXXL":"07","90":"21","95":"22","100":"23","105":"24","110":"25"};
 const PRODUCT_OVERRIDES = {"MD NOTE L":"30045","MDNOTE L":"30045","MD노트L":"30045"};
@@ -263,8 +263,9 @@ function buildEAN13(countryCode, productName, sizeName, colorName){
   });
 
   // Initial values & first render
-  document.getElementById('product-name').value = 'MD노트L';
+  document.getElementById('product-name').value = '노트';
   document.getElementById('size').value = 'L';
   document.getElementById('color-name').value = 'White';
+  document.getElementById('bar-height').value = '60';
   renderBarcode();
 })();
