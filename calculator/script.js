@@ -113,16 +113,13 @@ document.addEventListener('DOMContentLoaded', function() {
             <div><strong>후가공:</strong> ${data.finishing}</div>
             <div><strong>배송비:</strong> ${data.shipping}</div>
             <hr>
-            <div><strong>종이 단가:</strong> ${data.paperPrice.toLocaleString()}원</div>
             <div><strong>부수 비용:</strong> ${data.quantityCost.toLocaleString()}원${data.format === 'B5' ? ' (B5 50% 할인 적용)' : ''}</div>
-            <div><strong>제본 단가:</strong> ${data.bindingPrice.toLocaleString()}원</div>
             <div><strong>제본 비용:</strong> ${data.bindingCost.toLocaleString()}원</div>
-            <div><strong>후가공 단가:</strong> ${data.finishingPrice.toLocaleString()}원</div>
             <div><strong>후가공 비용:</strong> ${data.finishingCost.toLocaleString()}원</div>
             <div><strong>포장 및 관리비:</strong> ${data.packagingPrice.toLocaleString()}원</div>
         `;
         
-        totalPrice.innerHTML = `<strong>총 견적가: 약 ${lowerBound.toLocaleString()}원 ~ ${upperBound.toLocaleString()}원</strong>`;
+        totalPrice.innerHTML = `<strong>약 ${lowerBound.toLocaleString()}원 ~ ${upperBound.toLocaleString()}원</strong>`;
         resultDiv.style.display = 'block';
         
         // 결과로 스크롤
