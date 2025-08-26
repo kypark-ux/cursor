@@ -3,67 +3,32 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>바코드·QR 생성기 · 국가/제품명/사이즈/컬러</title>
+<title>바코드 생성기 · 국가/제품명/사이즈/컬러</title>
 <link rel="preconnect" href="https://cdnjs.cloudflare.com">
-<style>
-  :root{--bg:#0f1115;--panel:#151a22;--ink:#e8edf5;--muted:#94a0b4;--line:#273043;--accent:#56a3ff}
-  *{box-sizing:border-box}
-  body{margin:0;font-family:system-ui,-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Apple SD Gothic Neo,Noto Sans KR,sans-serif;background:var(--bg);color:var(--ink)}
-  header{position:sticky;top:0;z-index:10;background:linear-gradient(180deg,#121724,#0f1115);border-bottom:1px solid var(--line);padding:16px}
-  header h1{margin:0;font-size:18px}
-  main{max-width:1140px;margin:0 auto;padding:16px;display:grid;grid-template-columns:440px 1fr;gap:16px}
-  @media (max-width:980px){main{grid-template-columns:1fr}}
-  .panel{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:16px}
-  .row{display:grid;grid-template-columns:1fr 1fr;gap:10px}
-  label{display:block;font-size:12px;color:var(--muted);margin:8px 0 6px}
-  input[type="text"],input[type="number"],select,input[type="color"]{width:100%;padding:10px 12px;border-radius:10px;border:1px solid #23304b;background:#0d1220;color:var(--ink);outline:none}
-  .hint{color:var(--muted);font-size:12px;margin-top:8px;line-height:1.5}
-  .stage{min-height:520px;display:flex;align-items:center;justify-content:center;background:#0b0f1a;border:1px dashed #2a3550;border-radius:14px;padding:18px}
-  .stage .wrap{padding:24px;border-radius:10px;background:var(--stage-bg,#fff);overflow:visible}
-  .footer{color:#7f89a1;font-size:12px;text-align:center;padding:14px}
-  .inline{display:flex;align-items:center;gap:8px}
-  .badge{display:inline-block;padding:2px 8px;border:1px solid #2a3550;border-radius:999px;font-size:11px;color:#a6b2c8}
-  .mono{font-family:ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace}
-  .actions{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}
-  button{padding:10px 14px;border-radius:10px;border:1px solid #2a3550;background:#14213a;color:#e6eef7;cursor:pointer}
-  button.primary{background:linear-gradient(180deg,#2a7cff,#56a3ff);border-color:#2a7cff;color:#06111f;font-weight:700}
-  .tabs{display:flex;gap:8px;margin:0 0 10px}
-  .tabs button{background:#10182b}
-  .tabs button.active{background:#182544;border-color:#24406f}
-  #preview{display:flex;justify-content:center;align-items:center;flex-direction:column}
-  #preview svg{display:block;margin:0 auto}
-  #preview-label{text-align:center}
-</style>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jsbarcode/3.11.6/JsBarcode.all.min.js" referrerpolicy="no-referrer"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js" referrerpolicy="no-referrer"></script>
+<link rel="stylesheet" href="styles.css">
 </head>
 <body>
   <header>
-    <h1>바코드 · QR 생성기 <span class="badge">국가 · 제품명 · 사이즈 · 컬러</span></h1>
+    <h1>바코드 생성기 <span class="badge">국가 · 제품명 · 사이즈 · 컬러</span></h1>
   </header>
   <main>
     <section class="panel" id="controls">
-      <div class="tabs">
-        <button id="tab-barcode" class="active" type="button">바코드</button>
-        <button id="tab-qr" type="button">QR 코드</button>
-      </div>
-
       <!-- Barcode Controls -->
-<div id="barcode-format-wrap" style="margin-bottom:10px;">
-  <label for="barcode-format" style="display:block;font-size:12px;color:#94a0b4;margin:0 0 6px">바코드 규격</label>
-  <select id="barcode-format" style="width:100%;padding:10px 12px;border-radius:10px;border:1px solid #23304b;background:#0d1220;color:#e8edf5;outline:none">
-    <option value="EAN13" selected>EAN-13 (권장)</option>
-    <option value="UPC">UPC-A</option>
-    <option value="EAN8">EAN-8</option>
-    <option value="CODE128">CODE128</option>
-    <option value="CODE39">CODE39</option>
-    <option value="ITF">ITF</option>
-    <option value="ITF14">ITF-14</option>
-    <option value="MSI">MSI</option>
-    <option value="Pharmacode">Pharmacode</option>
-    <option value="codabar">Codabar</option>
-  </select>
-</div>
+      <div id="barcode-format-wrap">
+        <label for="barcode-format">바코드 규격</label>
+        <select id="barcode-format">
+          <option value="EAN13" selected>EAN-13 (권장)</option>
+          <option value="UPC">UPC-A</option>
+          <option value="EAN8">EAN-8</option>
+          <option value="CODE128">CODE128</option>
+          <option value="CODE39">CODE39</option>
+          <option value="ITF">ITF</option>
+          <option value="ITF14">ITF-14</option>
+          <option value="MSI">MSI</option>
+          <option value="codabar">Codabar</option>
+        </select>
+      </div>
+      
       <div id="controls-barcode">
         <div class="row">
           <div>
@@ -94,15 +59,15 @@
           입력이 바뀌면 자동으로 숫자 코드가 생성되고 바코드가 갱신됩니다.
         </p>
 
-        <div class="panel" style="margin-top:8px">
+        <div class="panel">
           <div class="inline">
-            <strong style="font-size:13px">생성된 코드</strong>
-            <span id="code" class="mono" style="margin-left:8px;opacity:.9"></span>
+            <strong>생성된 코드</strong>
+            <span id="code" class="mono"></span>
           </div>
           <div id="explain" class="hint mono"></div>
         </div>
 
-        <div class="panel" style="margin-top:8px">
+        <div class="panel">
           <label>출력 옵션</label>
           <div class="row">
             <div>
@@ -134,46 +99,11 @@
               <input id="bg-color" type="color" value="#ffffff">
             </div>
           </div>
-          <div class="inline" style="margin-top:10px">
+          <div class="inline">
             <input id="display-value" type="checkbox" checked>
-            <label for="display-value" style="margin:0">바코드 아래 숫자 표시</label>
+            <label for="display-value">바코드 아래 숫자 표시</label>
           </div>
         </div>
-      </div>
-
-      <!-- QR Controls -->
-      <div id="controls-qr" style="display:none">
-        <label for="qr-text">QR 데이터</label>
-        <input id="qr-text" type="text" placeholder="예: https://newtype.design">
-        <div class="row">
-          <div>
-            <label for="qr-size">사이즈 (px)</label>
-            <input id="qr-size" type="number" min="120" max="1200" value="280">
-          </div>
-          <div>
-            <label for="qr-margin">여백 (px)</label>
-            <input id="qr-margin" type="number" min="0" max="40" value="4">
-          </div>
-        </div>
-        <div class="row">
-          <div>
-            <label for="qr-dark">암색(점) 색상</label>
-            <input id="qr-dark" type="color" value="#000000">
-          </div>
-          <div>
-            <label for="qr-light">명색(바탕) 색상</label>
-            <input id="qr-light" type="color" value="#ffffff">
-          </div>
-        </div>
-        <div class="inline" style="margin:8px 0"><input id="qr-show-label" type="checkbox" checked><label for="qr-show-label" style="margin:0">QR 라벨(텍스트) 노출</label></div>
-<label for="qr-ecc">오류정정 (ECC)</label>
-        <select id="qr-ecc">
-          <option value="M">M (기본)</option>
-          <option value="L">L</option>
-          <option value="Q">Q</option>
-          <option value="H">H</option>
-        </select>
-        <p class="hint">QR은 텍스트/URL/숫자 등 임의 문자열을 인코딩합니다.</p>
       </div>
 
       <div class="actions">
@@ -186,7 +116,7 @@
     <section class="panel">
       <div class="stage">
         <div class="wrap">
-          <div id="preview-label" class="mono" style="text-align:center;margin-bottom:8px;font-size:14px;"></div>
+          <div id="preview-label" class="mono"></div>
           <div id="preview"></div>
         </div>
       </div>
@@ -194,298 +124,12 @@
     </section>
   </main>
 
-  <div class="footer">JsBarcode & QRCode.js · 100% 로컬 동작 · 매핑/규칙은 스크립트 상단에서 수정 가능</div>
+  <div class="footer">JsBarcode · 100% 로컬 동작 · 매핑/규칙은 스크립트 상단에서 수정 가능</div>
 
-<script>
-// ======== 매핑 테이블 ========
-const COUNTRY_PREFIX = {"KR":"880","JP":"450"};
-const COLOR_CODE = {"WHITE":"01","BLACK":"02","NAVY":"03","GRAY":"04","RED":"05","BLUE":"06","GREEN":"07","YELLOW":"08","BEIGE":"09","BROWN":"10","IVORY":"11","CHARCOAL":"12","ORANGE":"13","PINK":"14","PURPLE":"15","KHAKI":"16"};
-const SIZE_CODE  = {"XS":"01","S":"02","M":"03","L":"04","XL":"05","XXL":"06","XXXL":"07","90":"21","95":"22","100":"23","105":"24","110":"25"};
-const PRODUCT_OVERRIDES = {"MD NOTE L":"30045","MDNOTE L":"30045","MD노트L":"30045"};
-
-// ======== 유틸 ========
-function normalizeKey(s){
-  return (s||"").toString().normalize('NFKD').toUpperCase().replace(/[^\w]+/g,' ').replace(/\s+/g,' ').trim();
-}
-// 라벨 포맷터: 20자 이상이면 2줄로 개행
-function formatLabelForTwoLines(text){
-  const t = (text||'').trim();
-  if (t.length < 20) return t;
-  const mid = Math.floor(t.length/2);
-  let split = t.lastIndexOf(' ', mid);
-  if (split === -1) split = t.indexOf(' ', mid);
-  if (split === -1 || split < 8) split = 20;
-  const a = t.slice(0, split).trim();
-  const b = t.slice(split).trim();
-  return a + '<br>' + b;
-}
-function productToCode(name){
-  if(!name) return "00000";
-  const key = normalizeKey(name);
-  if (PRODUCT_OVERRIDES[key]) return PRODUCT_OVERRIDES[key];
-  let h = 2166136261 >>> 0;
-  for (let i=0;i<key.length;i++){ h ^= key.charCodeAt(i); h = Math.imul(h,16777619)>>>0; }
-  return String(h % 100000).padStart(5,'0');
-}
-function colorToCode(color){
-  if(!color) return "00";
-  const key = normalizeKey(color);
-  if (COLOR_CODE[key]) return COLOR_CODE[key];
-  let sum = 0; for(let i=0;i<key.length;i++) sum += key.charCodeAt(i);
-  return String(sum % 100).padStart(2,'0');
-}
-function sizeToCode(size){
-  if(!size) return "00";
-  const key = normalizeKey(size).replace(/\s+/g,'');
-  if (SIZE_CODE[key]) return SIZE_CODE[key];
-  let sum = 0; for(let i=0;i<key.length;i++) sum += key.charCodeAt(i);
-  return String(sum % 100).padStart(2,'0');
-}
-function ean13CheckDigit(twelve){
-  const digits = twelve.split('').map(d=>parseInt(d,10)); let sum = 0;
-  for (let i=0;i<12;i++){ sum += digits[i]*((i%2===0)?1:3); }
-  const mod = sum % 10; return (mod===0)?0:10-mod;
-}
-
-  // 포맷별 콘텐츠 생성
-  function contentForFormat(fmt, parts, pn, sz, cn){
-    const base12 = parts.prefix + parts.prod + parts.size + parts.clr; // 12
-    if (fmt === 'EAN13'){
-      const cd = ean13CheckDigit(base12);
-      return { value: base12 + String(cd), display: true };
-    }
-    if (fmt === 'UPC'){
-      // UPC-A는 11자리 + 체크. 11자리만 넘기면 JsBarcode가 체크를 계산한다.
-      return { value: base12.slice(0,11), display: true };
-    }
-    if (fmt === 'EAN8'){
-      // 7자리 데이터 생성(제품명+사이즈+컬러 기반 해시) → 7자리 넘기면 체크 계산
-      let key = (pn||'') + '|' + (sz||'') + '|' + (cn||'');
-      let h = 2166136261 >>> 0;
-      for (let i=0;i<key.length;i++){ h ^= key.charCodeAt(i); h = Math.imul(h,16777619)>>>0; }
-      const d7 = String(h % 10000000).padStart(7,'0');
-      return { value: d7, display: true };
-    }
-    if (fmt === 'ITF14'){
-      // 13자리 + 체크, 앞에 0을 붙여 13자리로 맞춤
-      const d13 = ('0' + base12).slice(-13);
-      return { value: d13, display: true };
-    }
-    if (fmt === 'Pharmacode'){
-      // 3..131070 범위, 해시로 맵핑
-      const n = (parseInt(base12.slice(0,9),10) % 131000) + 3;
-      return { value: String(n), display: false }; // 보통 하단 숫자표시는 끄는게 가독성 좋음
-    }
-    // CODE128, CODE39, codabar, MSI, ITF 등은 base12 그대로 사용
-    return { value: base12, display: true };
-  }
-
-function buildEAN13(countryCode, productName, sizeName, colorName){
-  const prefix = COUNTRY_PREFIX[countryCode] || "000";
-  const prod = productToCode(productName);
-  const size = sizeToCode(sizeName);
-  const clr  = colorToCode(colorName);
-  const body12 = prefix + prod + size + clr;
-  const cd = ean13CheckDigit(body12);
-  return { code13: body12 + String(cd), parts:{prefix, prod, size, clr, cd} };
-}
-
-(function(){
-  const $ = s=>document.querySelector(s);
-  const preview = $('#preview');
-  const labelEl = $('#preview-label');
-
-  // Tabs
-  $('#tab-barcode').addEventListener('click', () => {
-    document.getElementById('barcode-format-wrap').style.display = '';
-    $('#tab-barcode').classList.add('active'); $('#tab-qr').classList.remove('active');
-    $('#controls-barcode').style.display = ''; $('#controls-qr').style.display = 'none';
-    $('#btn-save-svg').disabled = false;
-    renderBarcode();
-  });
-  $('#tab-qr').addEventListener('click', () => {
-    document.getElementById('barcode-format-wrap').style.display = 'none';
-    $('#tab-qr').classList.add('active'); $('#tab-barcode').classList.remove('active');
-    $('#controls-qr').style.display = ''; $('#controls-barcode').style.display = 'none';
-    $('#btn-save-svg').disabled = true; // QR은 SVG 저장 비활성화
-    renderQR();
-  });
-
-  // Label coloring synced with bar color
-  function syncLabelColor(){
-    labelEl.style.color = $('#bar-color').value || '#000000';
-  }
-
-  // Render Barcode
-  function renderBarcode(){
-    const fmtSel = document.getElementById('barcode-format');
-    const fmt = fmtSel ? fmtSel.value : 'EAN13';
-    const cc = $('#country').value;
-    const pn = $('#product-name').value;
-    const sz = $('#size').value;
-    const cn = $('#color-name').value;
-    const {code13, parts} = buildEAN13(cc, pn, sz, cn);
-    const content = contentForFormat(fmt, parts, pn, sz, cn);
-
-    // Set label (제품명/사이즈/(컬러))
-    const labelText = `${pn || ''} ${sz || ''}${cn ? ' ('+cn+')' : ''}`.trim();
-    labelEl.innerHTML = formatLabelForTwoLines(labelText);
-    syncLabelColor();
-
-    // Code breakdown
-    $('#code').textContent = content.value;
-    $('#explain').textContent = `구성: [국가 ${parts.prefix}] [제품 ${parts.prod}] [사이즈 ${parts.size}] [컬러 ${parts.clr}] + 체크디지트 ${parts.cd}`;
-
-    // Draw barcode
-    preview.innerHTML = '';
-    const svg = document.createElementNS('http://www.w3.org/2000/svg','svg');
-    svg.setAttribute('id','barcodeSvg');
-    preview.appendChild(svg);
-    try{
-      JsBarcode(svg, content.value, {
-        format: 'EAN13',
-        lineColor: $('#bar-color').value || '#000000',
-        background: $('#bg-color').value || '#ffffff',
-        width: clampInt($('#line-width').value, 1, 10),
-        height: clampInt($('#bar-height').value, 20, 300),
-        margin: clampInt($('#margin').value, 0, 40),
-        displayValue: (fmt==='Pharmacode') ? false : $('#display-value').checked,
-        fontSize: clampInt($('#font-size').value, 8, 32),
-      });
-    }catch(e){
-      preview.removeChild(svg);
-      const p = document.createElement('p');
-      p.textContent = '생성 실패: ' + (e && e.message ? e.message : e);
-      preview.appendChild(p);
-    }
-  }
-
-  // Render QR
-  let qrInstance = null;
-  function renderQR(){
-    const showLabel = (document.getElementById('qr-show-label')||{checked:true}).checked;
-    const text = $('#qr-text').value || '';
-    const size = clampInt($('#qr-size').value, 120, 1200);
-    const margin = clampInt($('#qr-margin').value, 0, 40);
-    const dark = $('#qr-dark').value || '#000000';
-    const light = $('#qr-light').value || '#ffffff';
-    const ecc = ($('#qr-ecc').value || 'M').toUpperCase();
-
-    // Label for QR shows content (cropped if too long)
-    const show = text.length>60 ? text.slice(0,57)+'...' : text;
-    if (showLabel) {
-      labelEl.style.display = '';
-      labelEl.textContent = show;
-      labelEl.style.color = dark;
-    } else {
-      labelEl.textContent = '';
-      labelEl.style.display = 'none';
-    }
-
-    preview.innerHTML = '';
-    const div = document.createElement('div');
-    preview.appendChild(div);
-    qrInstance = new QRCode(div, {
-      text: text || ' ',
-      width: size, height: size,
-      colorDark: dark, colorLight: light,
-      correctLevel: QRCode.CorrectLevel[ecc] || QRCode.CorrectLevel.M,
-    });
-    div.style.padding = margin + 'px';
-  }
-
-  function clampInt(v,min,max){ v=parseInt(v,10); if(isNaN(v)) v=min; return Math.max(min, Math.min(max,v)); }
-
-  // Export buttons
-  $('#btn-save-svg').addEventListener('click', () => {
-    if ($('#tab-qr').classList.contains('active')){
-      alert('QR은 SVG 저장을 지원하지 않습니다. PNG 저장을 이용하세요.');
-      return;
-    }
-    const svg = document.querySelector('#preview svg');
-    if (!svg){ alert('먼저 바코드를 생성하세요.'); return; }
-    const serializer = new XMLSerializer();
-    let source = serializer.serializeToString(svg);
-    if(!source.match(/^<svg[^>]+xmlns=/)){ source = source.replace(/^<svg/, '<svg xmlns="http://www.w3.org/2000/svg"'); }
-    const blob = new Blob([source], {type:'image/svg+xml;charset=utf-8'});
-    downloadBlob(blob, 'barcode.svg');
-  });
-
-  $('#btn-save-png').addEventListener('click', async () => {
-    if ($('#tab-qr').classList.contains('active')){
-      const canvas = document.querySelector('#preview canvas');
-      if (!canvas){ alert('먼저 QR을 생성하세요.'); return; }
-      canvas.toBlob(b => downloadBlob(b, 'qrcode.png'));
-      return;
-    }
-    const svg = document.querySelector('#preview svg');
-    if (!svg){ alert('먼저 바코드를 생성하세요.'); return; }
-    const url = await svgToPngURL(svg);
-    const blob = await (await fetch(url)).blob();
-    downloadBlob(blob, 'barcode.png');
-  });
-
-  $('#btn-copy').addEventListener('click', async () => {
-    try{
-      let blob;
-      if ($('#tab-qr').classList.contains('active')){
-        const canvas = document.querySelector('#preview canvas');
-        if (!canvas){ alert('먼저 QR을 생성하세요.'); return; }
-        blob = await new Promise(r => canvas.toBlob(r, 'image/png'));
-      } else {
-        const svg = document.querySelector('#preview svg');
-        const url = await svgToPngURL(svg);
-        blob = await (await fetch(url)).blob();
-      }
-      await navigator.clipboard.write([new ClipboardItem({'image/png': blob})]);
-      alert('PNG 복사 완료!');
-    }catch(e){ alert('복사 실패: 브라우저 권한을 확인해주세요.'); }
-  });
-
-  async function svgToPngURL(svg){
-    const serializer = new XMLSerializer();
-    let source = serializer.serializeToString(svg);
-    if(!source.match(/^<svg[^>]+xmlns=/)){ source = source.replace(/^<svg/, '<svg xmlns="http://www.w3.org/2000/svg"'); }
-    const url = 'data:image/svg+xml;charset=utf-8,' + encodeURIComponent(source);
-    const img = new Image();
-    const w = parseFloat(svg.getAttribute('width')) || svg.getBBox().width;
-    const h = parseFloat(svg.getAttribute('height')) || svg.getBBox().height;
-    const scale = 2;
-    const canvas = document.createElement('canvas');
-    canvas.width = Math.max(1, Math.round(w*scale));
-    canvas.height = Math.max(1, Math.round(h*scale));
-    const ctx = canvas.getContext('2d');
-    await new Promise(resolve => { img.onload = resolve; img.src = url; });
-    ctx.setTransform(scale,0,0,scale,0,0);
-    ctx.drawImage(img, 0, 0);
-    return canvas.toDataURL('image/png');
-  }
-
-  function downloadBlob(blob,name){
-    const a=document.createElement('a'); a.href=URL.createObjectURL(blob); a.download=name;
-    document.body.appendChild(a); a.click(); setTimeout(()=>{ URL.revokeObjectURL(a.href); a.remove(); },0);
-  }
-
-  // Bind inputs
-  ['country','product-name','size','color-name','line-width','bar-height','margin','font-size','bar-color','bg-color','display-value','barcode-format'].forEach(id => {
-    const el = document.getElementById(id); if (el) el.addEventListener('input', ()=>{
-      if (document.getElementById('tab-barcode').classList.contains('active')) renderBarcode();
-      if (id==='bar-color') syncLabelColor();
-    });
-  });
-  ['qr-text','qr-size','qr-margin','qr-dark','qr-light','qr-ecc','qr-show-label'].forEach(id => {
-    const el = document.getElementById(id); if (el) el.addEventListener('input', ()=>{
-      if (document.getElementById('tab-qr').classList.contains('active')) renderQR();
-    });
-  });
-
-  // Initial values & first render
-  document.getElementById('product-name').value = 'MD노트L';
-  document.getElementById('size').value = 'L';
-  document.getElementById('color-name').value = 'White';
-  document.getElementById('qr-text').value = 'https://newtype.design';
-  renderBarcode();
-})();
-</script>
+  <!-- External Libraries -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jsbarcode/3.11.6/JsBarcode.all.min.js" referrerpolicy="no-referrer"></script>
+  
+  <!-- Application Script -->
+  <script src="script.js"></script>
 </body>
 </html>
