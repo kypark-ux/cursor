@@ -1,0 +1,280 @@
+/* 반응형 헤더 스타일 */
+.header {
+  width: 100%;
+  background-color: #ffffff;
+}
+
+.container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0px 20px;
+  max-width: 1280px;
+  margin: 0 auto;
+  height: 101px;
+}
+
+.title {
+  font-family: "Afacad-Regular", Helvetica;
+  font-weight: 400;
+  color: #000000;
+  font-size: 56px;
+  letter-spacing: 0;
+  line-height: normal;
+}
+
+.year {
+  font-family: "Pretendard-Bold", Helvetica;
+  font-weight: 700;
+  color: #000000;
+  font-size: 20px;
+  letter-spacing: 0;
+  line-height: normal;
+  white-space: nowrap;
+}
+
+/* 메인 콘텐츠 */
+.main {
+  padding: 40px 20px;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.calculator-container {
+  background-color: #ffffff;
+  border-radius: 8px;
+  padding: 30px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.calculator-title {
+  font-family: "Pretendard-Bold", Helvetica;
+  font-size: 28px;
+  color: #000000;
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+/* 폼 스타일 */
+.calculator-form {
+  display: grid;
+  gap: 20px;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.form-group label {
+  font-family: "Pretendard-Bold", Helvetica;
+  font-size: 16px;
+  color: #000000;
+  font-weight: 600;
+}
+
+.form-group input,
+.form-group select {
+  padding: 12px 16px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  font-size: 16px;
+  font-family: "Pretendard-Bold", Helvetica;
+}
+
+.form-group input:focus,
+.form-group select:focus {
+  outline: none;
+  border-color: #4a90e2;
+}
+
+.form-group select {
+  background-color: white;
+  cursor: pointer;
+}
+
+/* 부수 컨트롤 스타일 */
+.quantity-control {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.quantity-btn {
+  width: 40px;
+  height: 40px;
+  border: 1px solid #ddd;
+  background-color: #f8f9fa;
+  color: #333;
+  font-size: 18px;
+  font-weight: bold;
+  cursor: pointer;
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s;
+}
+
+.quantity-btn:hover {
+  background-color: #e9ecef;
+  border-color: #4a90e2;
+}
+
+.quantity-btn:active {
+  background-color: #dee2e6;
+}
+
+.quantity-control input[type="number"] {
+  flex: 1;
+  text-align: center;
+}
+
+.calculate-btn {
+  background-color: #4a90e2;
+  color: white;
+  border: none;
+  padding: 15px 30px;
+  border-radius: 4px;
+  font-size: 18px;
+  font-weight: 600;
+  cursor: pointer;
+  font-family: "Pretendard-Bold", Helvetica;
+  transition: background-color 0.3s;
+}
+
+.calculate-btn:hover {
+  background-color: #357abd;
+}
+
+/* 결과 스타일 */
+.result {
+  margin-top: 30px;
+  padding: 20px;
+  background-color: #f8f9fa;
+  border-radius: 4px;
+}
+
+.result h3 {
+  font-family: "Pretendard-Bold", Helvetica;
+  font-size: 20px;
+  color: #000000;
+  margin-bottom: 15px;
+  text-align: center;
+}
+
+.result-details {
+  margin-bottom: 20px;
+  font-family: "Pretendard-Bold", Helvetica;
+  font-size: 14px;
+  color: #666;
+}
+
+.total-price {
+  text-align: center;
+  font-family: "Pretendard-Bold", Helvetica;
+  font-size: 18px;
+  color: #000000;
+  padding: 15px;
+  background-color: #ffffff;
+  border-radius: 4px;
+  border: 2px solid #4a90e2;
+}
+
+/* 태블릿 반응형 */
+@media (max-width: 768px) {
+  .container {
+    padding: 0px 15px;
+    height: 80px;
+  }
+  
+  .title {
+    font-size: 42px;
+  }
+  
+  .year {
+    font-size: 18px;
+  }
+  
+  .main {
+    padding: 30px 15px;
+  }
+  
+  .calculator-container {
+    padding: 25px;
+  }
+  
+  .calculator-title {
+    font-size: 24px;
+  }
+}
+
+/* 모바일 반응형 */
+@media (max-width: 480px) {
+  .container {
+    padding: 0px 10px;
+    height: 70px;
+    flex-direction: column;
+    gap: 5px;
+    text-align: center;
+  }
+  
+  .title {
+    font-size: 32px;
+  }
+  
+  .year {
+    font-size: 16px;
+  }
+  
+  .main {
+    padding: 20px 10px;
+  }
+  
+  .calculator-container {
+    padding: 20px;
+  }
+  
+  .calculator-title {
+    font-size: 20px;
+  }
+  
+  .form-group input {
+    padding: 10px 12px;
+    font-size: 14px;
+  }
+  
+  .calculate-btn {
+    padding: 12px 20px;
+    font-size: 16px;
+  }
+}
+
+/* 매우 작은 화면 */
+@media (max-width: 320px) {
+  .container {
+    padding: 0px 8px;
+    height: 60px;
+  }
+  
+  .title {
+    font-size: 28px;
+  }
+  
+  .year {
+    font-size: 14px;
+  }
+  
+  .main {
+    padding: 15px 8px;
+  }
+  
+  .calculator-container {
+    padding: 15px;
+  }
+  
+  .calculator-title {
+    font-size: 18px;
+  }
+}

@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta charset="utf-8" />
+    <title>Calculator</title>
+    <link rel="stylesheet" href="globals.css" />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    
+    <main class="main">
+      <div class="calculator-container">
+        <h2 class="calculator-title">인쇄물 견적 계산기</h2>
+        
+        <form class="calculator-form" id="calculatorForm">
+          <div class="form-group">
+            <label for="format">판형</label>
+            <select id="format" name="format" required>
+              <option value="">판형을 선택하세요</option>
+              <option value="A4">A4</option>
+              <option value="B5">B5</option>
+            </select>
+          </div>
+          
+          <div class="form-group">
+            <label for="pages">페이지 수</label>
+            <input type="number" id="pages" name="pages" placeholder="페이지 수 입력" min="1" required>
+          </div>
+          
+          <div class="form-group">
+            <label for="quantity">부수</label>
+            <div class="quantity-control">
+              <button type="button" class="quantity-btn" id="decreaseQuantity">-</button>
+              <input type="number" id="quantity" name="quantity" value="200" min="10" step="10" required>
+              <button type="button" class="quantity-btn" id="increaseQuantity">+</button>
+            </div>
+          </div>
+          
+          <div class="form-group">
+            <label for="paper">종이</label>
+            <select id="paper" name="paper" required>
+              <option value="">종이를 선택하세요</option>
+              <option value="일반용지">일반용지</option>
+              <option value="고급용지">고급용지</option>
+            </select>
+          </div>
+          
+          <div class="form-group">
+            <label for="binding">제본방식</label>
+            <select id="binding" name="binding" required>
+              <option value="">제본방식을 선택하세요</option>
+              <option value="무선제본">무선제본</option>
+              <option value="양장제본">양장제본</option>
+              <option value="댓노리">댓노리</option>
+              <option value="링제본">링제본</option>
+            </select>
+          </div>
+          
+          <div class="form-group">
+            <label for="finishing">후가공</label>
+            <select id="finishing" name="finishing" required>
+              <option value="">후가공을 선택하세요</option>
+              <option value="일반">일반</option>
+              <option value="고급">고급</option>
+            </select>
+          </div>
+          
+          <div class="form-group">
+            <label for="shipping">배송비</label>
+            <select id="shipping" name="shipping" required>
+              <option value="">배송비를 선택하세요</option>
+              <option value="포함">포함</option>
+              <option value="미포함">미포함</option>
+            </select>
+          </div>
+          
+          <button type="submit" class="calculate-btn">견적 계산하기</button>
+        </form>
+        
+        <div class="result" id="result" style="display: none;">
+          <h3>견적 결과</h3>
+          <div class="result-details" id="resultDetails"></div>
+          <div class="total-price">
+            <strong>총 견적가: <span id="totalPrice">0</span>원</strong>
+          </div>
+        </div>
+      </div>
+    </main>
+    
+    <script src="script.js"></script>
+  </body>
+</html>
