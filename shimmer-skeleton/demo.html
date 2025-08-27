@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Shimmer Skeleton Demo - 이미지 & 영상</title>
+  <link rel="stylesheet" href="skeleton-black-round10.css">
+</head>
+<body class="demo">
+  <h1>이미지 & 영상 스켈레톤 로딩</h1>
+  <p style="color: #888; margin-bottom: 20px;">
+    💡 스켈레톤이 더 잘 보이도록 로딩을 의도적으로 지연시켰습니다.<br>
+    이미지: 2초, 영상: 3초 지연 후 스켈레톤이 사라집니다.
+  </p>
+
+  <h2>1) 아바타 + 텍스트 카드</h2>
+  <div class="card">
+    <div class="row" style="margin-bottom:10px">
+      <div class="skeleton sk-circle" style="width:44px;height:44px"></div>
+      <div style="flex:1">
+        <div class="skeleton sk-line lg" style="width:40%"></div>
+        <div class="skeleton sk-line sm" style="width:35%;margin-top:8px"></div>
+      </div>
+    </div>
+    <div class="sk-img" style="--ratio: 16/9; height: 800px;">
+      <div class="skeleton sk-rect" style="position: absolute; inset: 0; z-index: 1;"></div>
+      <img data-src="https://dm3yrk3qb82fp.cloudfront.net/works/df5e3153-9048-4621-983f-2b477013958f.png" alt="아바타 카드 이미지">
+    </div>
+  </div>
+
+  <h2>2) 영상 썸네일 + 스켈레톤</h2>
+  <div class="card">
+    <div class="sk-video" style="--ratio: 16/9">
+      <div class="skeleton sk-rect" style="position: absolute; inset: 0; z-index: 1;"></div>
+      <!-- 썸네일 이미지 + 실제 영상 -->
+      <img class="sk-thumbnail" src="https://picsum.photos/id/1025/320/180" alt="영상 썸네일">
+      <video data-src="https://dm3yrk3qb82fp.cloudfront.net/works/3b64509e-972a-4e82-8e24-38b398edb924.mp4" muted loop autoplay>
+        <source data-src="https://dm3yrk3qb82fp.cloudfront.net/works/3b64509e-972a-4e82-8e24-38b398edb924.mp4" type="video/mp4">
+      </video>
+    </div>
+    <div class="video-info">
+      <div>썸네일 + 영상 스켈레톤 (3초 지연, 자동재생)</div>
+      <small>썸네일로 빠르게 표시, 로드 후 자동재생</small>
+    </div>
+  </div>
+
+  <script src="skeleton.js"></script>
+</body>
+</html>
